@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MediCare Online Pharmacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2a7de1;
+            --primary-dark: #1a5bb5;
+            --secondary: #4CAF50;
+            --accent: #FF5722;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #3d8b40;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, rgba(42, 125, 225, 0.9) 0%, rgba(26, 91, 181, 0.9) 100%), url('https://images.unsplash.com/photo-1586773860418-dc22f8b874bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .page-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(42, 125, 225, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .contact-text h4 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .contact-text p {
+            color: var(--gray);
+            margin-bottom: 0;
+        }
+
+        /* Contact Form */
+        .contact-form h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 125, 225, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: var(--light);
+            padding: 80px 0;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background-color: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark);
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: #f8f9fa;
+        }
+
+        .faq-question.active {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: white;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .faq-answer.open {
+            padding: 20px;
+            max-height: 300px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .faq-answer p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Map Section */
+        .map {
+            padding: 80px 0;
+        }
+
+        .map-container {
+            height: 400px;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+        }
+
+        .map-placeholder i {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        /* Support Hours */
+        .support-hours {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2a7de1 0%, #1a5bb5 100%);
+            color: white;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .hours-card {
+            text-align: center;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+        }
+
+        .hours-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hours-card h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .hours-list {
+            list-style: none;
+        }
+
+        .hours-list li {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 60px 0;
+            }
+
+            .page-hero h1 {
+                font-size: 36px;
+            }
+
+            .page-hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .map-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-pills logo-icon"></i>
+                <div class="logo-text">Medi<span>Care</span></div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                <li><a href="#"><i class="fas fa-prescription-bottle"></i> Prescriptions</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html" class="active"><i class="fas fa-phone"></i> Contact</a></li>
+            </ul>
+
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="register.html" class="btn">Register</a>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <p>We're here to help with all your healthcare needs. Contact us for any questions about medicines, prescriptions, or our services.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info card">
+                    <h3>Contact Information</h3>
+                    <p>Reach out to us through any of the following channels. Our team is ready to assist you with your healthcare needs.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Our Location</h4>
+                                <p>123 Health Street<br>Medical City, MC 10001<br>United States</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone Numbers</h4>
+                                <p>General Inquiries: +1 (555) 123-4567<br>Prescription Support: +1 (555) 123-4568<br>Emergency: +1 (555) 123-4569</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Addresses</h4>
+                                <p>General: info@medicare.com<br>Support: support@medicare.com<br>Pharmacist: pharmacist@medicare.com</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Business Hours</h4>
+                                <p>Monday - Sunday: 8:00 AM - 10:00 PM<br>24/7 Emergency Support Available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form card">
+                    <h3>Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" class="form-control" required>
+                                <option value="">Select a subject</option>
+                                <option value="prescription">Prescription Inquiry</option>
+                                <option value="order">Order Status</option>
+                                <option value="medicine">Medicine Information</option>
+                                <option value="delivery">Delivery Issues</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="feedback">Feedback & Suggestions</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" class="form-control" placeholder="Please describe your inquiry in detail..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn" style="width: 100%; padding: 15px;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I upload a prescription?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can upload your prescription by clicking the "Upload Prescription" button on our homepage or in your account dashboard. Simply take a clear photo of your prescription and upload it. Our pharmacists will review it within 1-2 hours during business hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How long does delivery take?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standard delivery takes 2-3 business days. Express delivery is available for next-day delivery in most metropolitan areas. Delivery times may vary based on your location and prescription verification requirements.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are your medicines authentic?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, all medicines sold through MediCare are 100% authentic and sourced directly from licensed manufacturers and distributors. We maintain strict quality control and verification processes to ensure medication safety.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I consult with a pharmacist?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! Our licensed pharmacists are available 24/7 for consultations. You can chat with them through our website, mobile app, or call our pharmacist helpline. Consultations are free for registered customers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What payment methods do you accept?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express), debit cards, PayPal, and bank transfers. We also offer cash on delivery in select areas. All payments are processed through secure, encrypted channels.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Do you deliver to my area?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We deliver nationwide across the United States. Enter your zip code during checkout to check specific delivery options for your area. We're continuously expanding our delivery network to serve more communities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Hours -->
+    <section class="support-hours">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Our Support Services</h2>
+            <div class="hours-grid">
+                <div class="hours-card">
+                    <div class="hours-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h4>Customer Support</h4>
+                    <ul class="hours-list">
+                        <li>Monday - Friday: 8 AM - 10 PM</li>
+                        <li>Saturday - Sunday: 9 AM - 8 PM</li>
+                        <li>Email support: 24/7</li>
+                    </ul>
+                </div>
+
+                <div class="hours-card">
+                    <div class="hours-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h4>Pharmacist Consultation</h4>
+                    <ul class="hours-list">
+                        <li>24/7 Availability</li>
+                        <li>Free for registered users</li>
+                        <li>Via chat, phone, or video</li>
+                    </ul>
+                </div>
+
+                <div class="hours-card">
+                    <div class="hours-icon">
+                        <i class="fas fa-prescription"></i>
+                    </div>
+                    <h4>Prescription Processing</h4>
+                    <ul class="hours-list">
+                        <li>Monday - Sunday: 8 AM - 10 PM</li>
+                        <li>Emergency: 24/7</li>
+                        <li>Average processing: 1-2 hours</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map">
+        <div class="container">
+            <h2 class="section-title">Find Our Pharmacy</h2>
+            <div class="map-container card">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>MediCare Headquarters</h3>
+                    <p>123 Health Street, Medical City, MC 10001</p>
+                    <p style="margin-top: 10px;"><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                </div>
+                <!-- In a real implementation, you would embed Google Maps here -->
+                <!-- <iframe src="https://www.google.com/maps/embed?..." width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MediCare</h3>
+                    <p>Your trusted online pharmacy for authentic medicines and healthcare products with fast delivery and expert support.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="#">Prescriptions</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Diabetes Care</a></li>
+                        <li><a href="#">Skin Care</a></li>
+                        <li><a href="#">Baby Care</a></li>
+                        <li><a href="#">First Aid</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Emergency Contact</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> Emergency: +1 (555) 123-4569</li>
+                        <li><i class="fas fa-prescription-bottle"></i> Prescription Emergency: +1 (555) 123-4568</li>
+                        <li><i class="fas fa-ambulance"></i> Medical Emergency: 911</li>
+                        <li><i class="fas fa-clock"></i> 24/7 Support Available</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediCare Online Pharmacy. All rights reserved. | <a href="#" style="color: #adb5bd; text-decoration: none;">Privacy Policy</a> | <a href="#" style="color: #adb5bd; text-decoration: none;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+            const navLinks = document.querySelector('.nav-links');
+            const authButtons = document.querySelector('.auth-buttons');
+
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+                authButtons.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                authButtons.style.display = 'flex';
+
+                if (window.innerWidth <= 768) {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '70px';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+
+                    authButtons.style.flexDirection = 'column';
+                    authButtons.style.position = 'absolute';
+                    authButtons.style.top = '270px';
+                    authButtons.style.left = '0';
+                    authButtons.style.right = '0';
+                    authButtons.style.padding = '0 20px 20px';
+                    authButtons.style.backgroundColor = 'white';
+                }
+            }
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+                
+                // Close all answers
+                document.querySelectorAll('.faq-answer').forEach(ans => {
+                    ans.classList.remove('open');
+                    ans.previousElementSibling.classList.remove('active');
+                });
+                
+                // Open clicked answer if it wasn't open
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    question.classList.add('active');
+                }
+            });
+        });
+
+        // Contact Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real implementation, you would send this data to a server
+            // For now, we'll just show a success message
+            alert(`Thank you ${firstName}! Your message has been received. We'll get back to you at ${email} within 24 hours.`);
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Update auth buttons based on login status
+        function updateAuthButtons() {
+            const authButtons = document.querySelector('.auth-buttons');
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const currentUser = localStorage.getItem('currentUser');
+
+            if (isLoggedIn === 'true' && currentUser) {
+                const user = JSON.parse(currentUser);
+                authButtons.innerHTML = `
+                    <span style="margin-right: 15px; font-weight: 600;">Welcome, ${user.name || user.email.split('@')[0]}</span>
+                    <a href="#" class="btn btn-outline" id="logoutBtn">Logout</a>
+                `;
+
+                document.getElementById('logoutBtn').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('currentUser');
+                    updateAuthButtons();
+                });
+            } else {
+                authButtons.innerHTML = `
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="register.html" class="btn">Register</a>
+                `;
+            }
+        }
+
+        // Initialize auth buttons
+        updateAuthButtons();
+    </script>
+</body>
+
+</html>

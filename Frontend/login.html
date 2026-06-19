@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* All the same styles from index.html */
+        :root {
+            --primary: #2a7de1;
+            --primary-dark: #1a5bb5;
+            --secondary: #4CAF50;
+            --accent: #FF5722;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        /* Login Form Styles */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 40px 0;
+        }
+
+        .auth-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .auth-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .auth-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 125, 225, 0.1);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray);
+        }
+
+        .auth-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            margin-top: auto;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-pills logo-icon"></i>
+                <div class="logo-text">Medi<span>Care</span></div>
+            </a>
+            <a href="index.html" class="btn btn-outline">Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Login Form -->
+    <main class="auth-container">
+        <div class="container">
+            <div class="auth-card">
+                <h2 class="auth-title">Login to Your Account</h2>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" id="loginEmail" class="form-control" placeholder="Enter your email"
+                            required>
+                        <div id="loginEmailError" class="error-message">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password"
+                            required>
+                        <div id="loginPasswordError" class="error-message">Password is required</div>
+                        <div id="loginCredentialsError" class="error-message">Invalid email or password</div>
+                    </div>
+
+                    <div id="loginSuccess" class="success-message">Login successful! Redirecting...</div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px;">
+                        Login
+                    </button>
+                </form>
+
+                <div class="auth-link">
+                    Don't have an account? <a href="register.html">Register here</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediCare Online Pharmacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Keep everything exactly the same up to the script tag -->
+    <script>
+        const loginForm = document.getElementById('loginForm');
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Clear previous errors
+            loginCredentialsError.style.display = 'none';
+
+            const email = loginEmail.value;
+            const password = loginPassword.value;
+
+            try {
+                // In login.html
+                const res = await fetch('/api/users/login', {  // REMOVE http://127.0.0.1:3000
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                    credentials: 'include'
+                });
+
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    loginCredentialsError.textContent = data.message || 'Login failed';
+                    loginCredentialsError.style.display = 'block';
+                    return;
+                }
+
+                // ✅ Show success message
+                loginSuccess.style.display = 'block';
+
+                // ✅ Wait a moment then redirect
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+
+            } catch (err) {
+                console.error('Login error:', err);
+                loginCredentialsError.textContent = 'Server not reachable';
+                loginCredentialsError.style.display = 'block';
+            }
+        });
+    </script>
+
+<script src="js/auth.js"></script>
+</body>
+
+</html>

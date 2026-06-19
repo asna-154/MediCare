@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare - Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* All the same styles from login.html */
+        :root {
+            --primary: #2a7de1;
+            --primary-dark: #1a5bb5;
+            --secondary: #4CAF50;
+            --accent: #FF5722;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        /* Register Form Styles */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+            padding: 40px 0;
+        }
+
+        .auth-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .auth-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .auth-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 125, 225, 0.1);
+        }
+
+        .password-strength {
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .strength-weak {
+            color: var(--danger);
+        }
+
+        .strength-medium {
+            color: var(--warning);
+        }
+
+        .strength-strong {
+            color: var(--success);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .success-message {
+            color: var(--success);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .auth-link {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray);
+        }
+
+        .auth-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .auth-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 0;
+            margin-top: auto;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-pills logo-icon"></i>
+                <div class="logo-text">Medi<span>Care</span></div>
+            </a>
+            <a href="index.html" class="btn btn-outline">Back to Home</a>
+        </div>
+    </header>
+
+    <!-- Register Form -->
+    <main class="auth-container">
+        <div class="container">
+            <div class="auth-card">
+                <h2 class="auth-title">Create Your Account</h2>
+
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" class="form-control" placeholder="First name" required>
+                            <div id="firstNameError" class="error-message">First name is required</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" class="form-control" placeholder="Last name" required>
+                            <div id="lastNameError" class="error-message">Last name is required</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerEmail">Email Address</label>
+                        <input type="email" id="registerEmail" class="form-control" placeholder="Enter your email"
+                            required>
+                        <div id="registerEmailError" class="error-message">Please enter a valid email address</div>
+                        <div id="emailExistsError" class="error-message">This email is already registered</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-control"
+                            placeholder="Create a password" required>
+                        <div id="passwordStrength" class="password-strength"></div>
+                        <div id="registerPasswordError" class="error-message">Password must be at least 8 characters
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" class="form-control"
+                            placeholder="Confirm your password" required>
+                        <div id="confirmPasswordError" class="error-message">Passwords do not match</div>
+                    </div>
+
+                    <div id="registerSuccess" class="success-message">Registration successful! Redirecting to login...
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; padding: 12px; font-size: 16px;">
+                        Create Account
+                    </button>
+                </form>
+
+                <div class="auth-link">
+                    Already have an account? <a href="login.html">Login here</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediCare Online Pharmacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        const registerForm = document.getElementById('registerForm');
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const registerEmail = document.getElementById('registerEmail');
+        const registerPassword = document.getElementById('registerPassword');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const passwordStrength = document.getElementById('passwordStrength');
+
+        // Error message elements
+        const firstNameError = document.getElementById('firstNameError');
+        const lastNameError = document.getElementById('lastNameError');
+        const registerEmailError = document.getElementById('registerEmailError');
+        const emailExistsError = document.getElementById('emailExistsError');
+        const registerPasswordError = document.getElementById('registerPasswordError');
+        const confirmPasswordError = document.getElementById('confirmPasswordError');
+        const registerSuccess = document.getElementById('registerSuccess');
+
+        // Password strength
+        function checkPasswordStrength(password) {
+            if (!password) { passwordStrength.textContent = ''; return 'empty'; }
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            return strength;
+        }
+        registerPassword.addEventListener('input', function () {
+            const strength = checkPasswordStrength(registerPassword.value);
+            if (strength === 'empty') { passwordStrength.textContent = ''; passwordStrength.className = 'password-strength'; return; }
+            if (strength <= 2) { passwordStrength.textContent = 'Weak password'; passwordStrength.className = 'password-strength strength-weak'; }
+            else if (strength <= 4) { passwordStrength.textContent = 'Medium password'; passwordStrength.className = 'password-strength strength-medium'; }
+            else { passwordStrength.textContent = 'Strong password'; passwordStrength.className = 'password-strength strength-strong'; }
+        });
+
+        function validateEmail(email) { return emailRegex.test(email); }
+
+        registerForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            firstNameError.style.display = 'none';
+            lastNameError.style.display = 'none';
+            registerEmailError.style.display = 'none';
+            emailExistsError.style.display = 'none';
+            registerPasswordError.style.display = 'none';
+            confirmPasswordError.style.display = 'none';
+            registerSuccess.style.display = 'none';
+
+            let isValid = true;
+            if (!firstName.value.trim()) { firstNameError.style.display = 'block'; isValid = false; }
+            if (!lastName.value.trim()) { lastNameError.style.display = 'block'; isValid = false; }
+            if (!registerEmail.value || !validateEmail(registerEmail.value)) { registerEmailError.style.display = 'block'; isValid = false; }
+            if (!registerPassword.value || registerPassword.value.length < 8) { registerPasswordError.style.display = 'block'; isValid = false; }
+            if (registerPassword.value !== confirmPassword.value) { confirmPasswordError.style.display = 'block'; isValid = false; }
+            if (!isValid) return;
+
+            try {
+                const res = await fetch('http://127.0.0.1:3000/api/users/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: firstName.value.trim() + ' ' + lastName.value.trim(),
+                        email: registerEmail.value,
+                        password: registerPassword.value
+                    })
+                });
+
+                const data = await res.json();
+
+                if (res.ok) {
+                    registerSuccess.style.display = 'block';
+                    registerForm.reset();
+                    passwordStrength.textContent = '';
+                    passwordStrength.className = 'password-strength';
+                    setTimeout(() => window.location.href = 'login.html', 2000);
+                } else {
+                    if (data.message.includes('exists')) emailExistsError.style.display = 'block';
+                    else alert(data.message);
+                }
+            } catch (err) {
+                console.error(err);
+                alert('Backend not reachable');
+            }
+        });
+
+        // Real-time validation
+        registerEmail.addEventListener('blur', function () {
+            if (!validateEmail(registerEmail.value)) { registerEmailError.style.display = 'block'; emailExistsError.style.display = 'none'; }
+            else { registerEmailError.style.display = 'none'; emailExistsError.style.display = 'none'; }
+        });
+        confirmPassword.addEventListener('input', function () {
+            confirmPasswordError.style.display = (registerPassword.value !== confirmPassword.value) ? 'block' : 'none';
+        });
+    </script>
+    <!-- Add this line to ALL HTML files -->
+<script src="js/auth.js"></script>
+
+</body>
+
+</html>

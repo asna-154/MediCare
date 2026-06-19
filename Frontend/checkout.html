@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MediCare Online Pharmacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+
+        /* Add to your existing CSS */
+        .form-control.error {
+            border-color: var(--danger) !important;
+            background-color: rgba(220, 53, 69, 0.05);
+        }
+
+        .form-control.valid {
+            border-color: var(--success) !important;
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        :root {
+            --primary: #2a7de1;
+            --primary-dark: #1a5bb5;
+            --secondary: #4CAF50;
+            --accent: #FF5722;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #3d8b40;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+            font-size: 24px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Checkout Progress */
+        .checkout-progress {
+            padding: 40px 0 20px;
+        }
+
+        .progress-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .progress-steps::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background-color: var(--light-gray);
+            z-index: 1;
+        }
+
+        .progress-steps::after {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background-color: var(--primary);
+            z-index: 1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-gray);
+            color: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 auto 10px;
+            transition: var(--transition);
+        }
+
+        .step.active .step-circle {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(42, 125, 225, 0.3);
+        }
+
+        .step.completed .step-circle {
+            background-color: var(--success);
+            color: white;
+        }
+
+        .step.completed .step-circle::after {
+            content: '✓';
+        }
+
+        .step-label {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .step.active .step-label {
+            color: var(--primary);
+        }
+
+        .step.completed .step-label {
+            color: var(--success);
+        }
+
+        /* Checkout Layout */
+        .checkout {
+            padding: 20px 0 60px;
+        }
+
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 30px;
+        }
+
+        /* Order Summary */
+        .order-summary {
+            position: sticky;
+            top: 100px;
+        }
+
+        .order-items {
+            margin-bottom: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-img {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--gray);
+            font-size: 24px;
+        }
+
+        .item-details {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .item-price {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            background: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+
+        .order-totals {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid var(--light-gray);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding: 5px 0;
+        }
+
+        .total-row.final {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
+            margin-top: 15px;
+        }
+
+        /* Checkout Form Sections */
+        .checkout-section {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(42, 125, 225, 0.1);
+        }
+
+        /* Shipping Options */
+        .shipping-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .shipping-option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .shipping-option:hover {
+            border-color: var(--primary);
+        }
+
+        .shipping-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(42, 125, 225, 0.05);
+        }
+
+        .shipping-radio {
+            margin-right: 15px;
+        }
+
+        .shipping-info {
+            flex: 1;
+        }
+
+        .shipping-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .shipping-desc {
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        .shipping-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .payment-method:hover {
+            border-color: var(--primary);
+        }
+
+        .payment-method.selected {
+            border-color: var(--primary);
+            background-color: rgba(42, 125, 225, 0.05);
+        }
+
+        .payment-radio {
+            margin-right: 15px;
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--dark);
+            font-size: 20px;
+        }
+
+        .payment-info {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        /* Prescription Notice */
+        .prescription-notice {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .prescription-notice h4 {
+            color: #856404;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .prescription-notice h4 i {
+            margin-right: 10px;
+        }
+
+        .prescription-notice p {
+            color: #856404;
+            font-size: 14px;
+        }
+
+        /* Success Modal */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--success);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+        }
+
+        .modal-content h2 {
+            color: var(--success);
+            margin-bottom: 15px;
+        }
+
+        .modal-content p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .order-summary {
+                position: static;
+                order: 2;
+            }
+
+            .checkout-form {
+                order: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .progress-steps {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .progress-steps::before,
+            .progress-steps::after {
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .order-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .item-img {
+                margin-bottom: 10px;
+            }
+
+            .item-quantity {
+                margin-top: 10px;
+            }
+
+            .shipping-option,
+            .payment-method {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .shipping-radio,
+            .payment-radio {
+                margin-bottom: 10px;
+            }
+
+            .shipping-price,
+            .payment-icon {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-pills logo-icon"></i>
+                <div class="logo-text">Medi<span>Care</span></div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                <li><a href="#"><i class="fas fa-prescription-bottle"></i> Prescriptions</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+            </ul>
+
+            <div class="auth-buttons">
+                <a href="cart.html" class="btn btn-outline" style="position: relative;">
+                    <i class="fas fa-shopping-cart"></i> Cart
+                    <span id="cartCount"
+                        style="position: absolute; top: -8px; right: -8px; background-color: var(--accent); color: white; width: 20px; height: 20px; border-radius: 50%; font-size: 12px; display: flex; align-items: center; justify-content: center;">3</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Checkout Progress -->
+    <section class="checkout-progress">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step completed" id="step1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Cart</div>
+                </div>
+                <div class="step active" id="step2">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Information</div>
+                </div>
+                <div class="step" id="step3">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Payment</div>
+                </div>
+                <div class="step" id="step4">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Section -->
+    <section class="checkout">
+        <div class="container">
+            <div class="checkout-container">
+                <!-- Left Column: Checkout Form -->
+                <div class="checkout-form">
+                    <!-- Contact Information -->
+                    <div class="checkout-section card">
+                        <h2 class="section-title">Contact Information</h2>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="your@email.com" required>
+                            <small style="color: var(--gray); margin-top: 5px; display: block;">We'll send your order
+                                confirmation here</small>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div class="checkout-section card">
+                        <h2 class="section-title">Shipping Address</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address">Address *</label>
+                            <input type="text" id="address" class="form-control" placeholder="Street address" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="address2">Apartment, suite, etc. (optional)</label>
+                            <input type="text" id="address2" class="form-control">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <select id="state" class="form-control" required>
+                                    <option value="">Select state</option>
+                                    <option value="AL">Alabama</option>
+                                    <option value="AK">Alaska</option>
+                                    <option value="AZ">Arizona</option>
+                                    <option value="AR">Arkansas</option>
+                                    <option value="CA">California</option>
+                                    <!-- Add more states as needed -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">ZIP Code *</label>
+                                <input type="text" id="zip" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Method -->
+                    <div class="checkout-section card">
+                        <h2 class="section-title">Shipping Method</h2>
+                        <div class="shipping-options">
+                            <div class="shipping-option selected">
+                                <input type="radio" name="shipping" id="standard" class="shipping-radio" checked>
+                                <div class="shipping-info">
+                                    <div class="shipping-name">Standard Delivery</div>
+                                    <div class="shipping-desc">3-5 business days</div>
+                                </div>
+                                <div class="shipping-price">$4.99</div>
+                            </div>
+
+                            <div class="shipping-option">
+                                <input type="radio" name="shipping" id="express" class="shipping-radio">
+                                <div class="shipping-info">
+                                    <div class="shipping-name">Express Delivery</div>
+                                    <div class="shipping-desc">1-2 business days</div>
+                                </div>
+                                <div class="shipping-price">$9.99</div>
+                            </div>
+
+                            <div class="shipping-option">
+                                <input type="radio" name="shipping" id="overnight" class="shipping-radio">
+                                <div class="shipping-info">
+                                    <div class="shipping-name">Overnight Delivery</div>
+                                    <div class="shipping-desc">Next business day</div>
+                                </div>
+                                <div class="shipping-price">$14.99</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="checkout-section card">
+                        <h2 class="section-title">Payment Method</h2>
+                        <div class="payment-methods">
+                            <div class="payment-method selected">
+                                <input type="radio" name="payment" id="card" class="payment-radio" checked>
+                                <div class="payment-icon">
+                                    <i class="far fa-credit-card"></i>
+                                </div>
+                                <div class="payment-info">
+                                    <div class="payment-name">Credit/Debit Card</div>
+                                    <div class="payment-desc">Pay with your card</div>
+                                </div>
+                            </div>
+
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="paypal" class="payment-radio">
+                                <div class="payment-icon">
+                                    <i class="fab fa-paypal"></i>
+                                </div>
+                                <div class="payment-info">
+                                    <div class="payment-name">PayPal</div>
+                                    <div class="payment-desc">Safer, easier way to pay</div>
+                                </div>
+                            </div>
+
+                            <div class="payment-method">
+                                <input type="radio" name="payment" id="cod" class="payment-radio">
+                                <div class="payment-icon">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                </div>
+                                <div class="payment-info">
+                                    <div class="payment-name">Cash on Delivery</div>
+                                    <div class="payment-desc">Pay when you receive</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prescription Notice -->
+                    <div class="prescription-notice">
+                        <h4><i class="fas fa-exclamation-circle"></i> Important Notice</h4>
+                        <p>For prescription medicines, a valid prescription from a licensed healthcare provider is
+                            required. Our pharmacists will verify your prescription before shipping. You may be
+                            contacted for additional information.</p>
+                    </div>
+
+                    <!-- Continue Button -->
+                    <button id="placeOrderBtn" class="btn"
+                        style="width: 100%; padding: 15px; font-size: 18px; margin-top: 30px;">
+                        <i class="fas fa-lock"></i> Place Order Securely
+                    </button>
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <div class="order-summary">
+                    <div class="card">
+                        <h2 class="section-title">Order Summary</h2>
+
+                        <div class="order-items">
+                            <!-- Sample Order Items -->
+                            <div class="order-item">
+                                <div class="item-img">
+                                    <i class="fas fa-pills"></i>
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-name">Paracetamol 500mg</div>
+                                    <div class="item-price">$5.99</div>
+                                </div>
+                                <div class="item-quantity">
+                                    <button class="quantity-btn"><i class="fas fa-minus"></i></button>
+                                    <input type="text" class="quantity-input" value="2" readonly>
+                                    <button class="quantity-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="order-item">
+                                <div class="item-img">
+                                    <i class="fas fa-capsules"></i>
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-name">Vitamin C 1000mg</div>
+                                    <div class="item-price">$12.99</div>
+                                </div>
+                                <div class="item-quantity">
+                                    <button class="quantity-btn"><i class="fas fa-minus"></i></button>
+                                    <input type="text" class="quantity-input" value="1" readonly>
+                                    <button class="quantity-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="order-item">
+                                <div class="item-img">
+                                    <i class="fas fa-prescription-bottle-alt"></i>
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-name">Amoxicillin 250mg</div>
+                                    <div class="item-price">$8.49</div>
+                                </div>
+                                <div class="item-quantity">
+                                    <button class="quantity-btn"><i class="fas fa-minus"></i></button>
+                                    <input type="text" class="quantity-input" value="1" readonly>
+                                    <button class="quantity-btn"><i class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="order-totals">
+                            <div class="total-row">
+                                <span>Subtotal</span>
+                                <span>$27.47</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Shipping</span>
+                                <span id="shippingCost">$4.99</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Tax</span>
+                                <span>$2.75</span>
+                            </div>
+                            <div class="total-row final">
+                                <span>Total</span>
+                                <span id="totalAmount">$35.21</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="card">
+                        <h3 style="margin-bottom: 15px;">Promo Code</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="promoCode" class="form-control" placeholder="Enter code">
+                            <button id="applyPromo" class="btn btn-outline">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Need Help -->
+                    <div class="card">
+                        <h3 style="margin-bottom: 15px;"><i class="fas fa-question-circle"></i> Need Help?</h3>
+                        <p style="color: var(--gray); margin-bottom: 15px;">Our pharmacists are available 24/7 to assist
+                            with your order.</p>
+                        <div style="display: flex; gap: 10px;">
+                            <a href="contact.html" class="btn btn-outline" style="flex: 1;">Contact Us</a>
+                            <a href="tel:+15551234567" class="btn btn-outline" style="flex: 1;"><i
+                                    class="fas fa-phone"></i> Call Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Order Confirmed!</h2>
+            <p>Thank you for your order! Your order number is <strong>#MC2023-4567</strong>. A confirmation email has
+                been sent to your email address.</p>
+            <p>Our pharmacists will review your prescription and contact you if needed. You can track your order in your
+                account dashboard.</p>
+            <div class="modal-buttons">
+                <a href="index.html" class="btn">Continue Shopping</a>
+                <a href="#" class="btn btn-outline" onclick="closeModal()">View Order Details</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MediCare</h3>
+                    <p>Your trusted online pharmacy for authentic medicines and healthcare products with fast delivery
+                        and expert support.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="#">Prescriptions</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Diabetes Care</a></li>
+                        <li><a href="#">Skin Care</a></li>
+                        <li><a href="#">Baby Care</a></li>
+                        <li><a href="#">First Aid</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> support@medicare.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sun: 8:00 AM - 10:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediCare Online Pharmacy. All rights reserved. | <a href="#"
+                        style="color: #adb5bd; text-decoration: none;">Privacy Policy</a> | <a href="#"
+                        style="color: #adb5bd; text-decoration: none;">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API = 'http://127.0.0.1:3000/api';
+
+        // DOM Elements
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+        const applyPromoBtn = document.getElementById('applyPromo');
+        const successModal = document.getElementById('successModal');
+        const cartCount = document.getElementById('cartCount');
+
+        // Order data
+        let orderData = {
+            items: [],
+            subtotal: 0,
+            shippingFee: 4.99, // Default standard shipping
+            tax: 0,
+            discount: 0,
+            total: 0
+        };
+
+        /* =========================
+           LOAD CART DATA
+        ========================= */
+        async function loadCartData() {
+            try {
+                console.log('Loading cart data for checkout...');
+
+                const res = await fetch(`${API}/cart`, {
+                    credentials: 'include'
+                });
+
+                const data = await res.json();
+
+                if (!data.success) {
+                    console.error('Failed to load cart:', data.message);
+                    showEmptyCart();
+                    return;
+                }
+
+                const items = data.items || [];
+                const subtotal = data.total || 0;
+
+                if (items.length === 0) {
+                    showEmptyCart();
+                    return;
+                }
+
+                // Update order data
+                orderData.items = items;
+                orderData.subtotal = subtotal;
+                orderData.tax = subtotal * 0.08; // 8% tax
+                orderData.total = calculateTotal();
+
+                // Update UI
+                updateOrderSummary(items, subtotal);
+                updateTotalsUI();
+
+            } catch (error) {
+                console.error('Error loading cart:', error);
+                showEmptyCart('Error loading cart. Please try again.');
+            }
+        }
+
+        /* =========================
+           UPDATE ORDER SUMMARY UI
+        ========================= */
+        function updateOrderSummary(items, subtotal) {
+            const orderItemsContainer = document.querySelector('.order-items');
+            if (!orderItemsContainer) return;
+
+            let itemsHTML = '';
+
+            items.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+
+                itemsHTML += `
+                <div class="order-item">
+                    <div class="item-img">
+                        <i class="${item.icon || 'fas fa-pills'}"></i>
+                    </div>
+                    <div class="item-details">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">$${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="item-quantity">
+                        <span class="quantity-input">${item.quantity}</span>
+                    </div>
+                </div>
+            `;
+            });
+
+            orderItemsContainer.innerHTML = itemsHTML;
+
+            // Update subtotal
+            document.querySelectorAll('.total-row')[0].innerHTML = `
+            <span>Subtotal</span>
+            <span>$${subtotal.toFixed(2)}</span>
+        `;
+        }
+
+        /* =========================
+           UPDATE TOTALS UI
+        ========================= */
+        function updateTotalsUI() {
+            // Update shipping cost
+            const shippingCostElement = document.getElementById('shippingCost');
+            if (shippingCostElement) {
+                shippingCostElement.textContent = `$${orderData.shippingFee.toFixed(2)}`;
+            }
+
+            // Update tax
+            const taxElements = document.querySelectorAll('.total-row');
+            if (taxElements[2]) {
+                taxElements[2].innerHTML = `
+                <span>Tax</span>
+                <span>$${orderData.tax.toFixed(2)}</span>
+            `;
+            }
+
+            // Update total
+            const totalAmountElement = document.getElementById('totalAmount');
+            if (totalAmountElement) {
+                totalAmountElement.textContent = `$${orderData.total.toFixed(2)}`;
+            }
+        }
+
+        /* =========================
+           CALCULATE TOTAL
+        ========================= */
+        function calculateTotal() {
+            return orderData.subtotal + orderData.shippingFee + orderData.tax - orderData.discount;
+        }
+
+        /* =========================
+           SHOW EMPTY CART
+        ========================= */
+        function showEmptyCart(message = null) {
+            const checkoutForm = document.querySelector('.checkout-form');
+            const orderSummary = document.querySelector('.order-summary');
+
+            if (!checkoutForm || !orderSummary) return;
+
+            const defaultMessage = 'Your cart is empty. Please add items to your cart before checkout.';
+
+            checkoutForm.innerHTML = `
+            <div class="card" style="text-align: center; padding: 60px 20px;">
+                <div style="font-size: 80px; color: var(--light-gray); margin-bottom: 20px;">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h2 style="margin-bottom: 15px;">Your Cart is Empty</h2>
+                <p style="color: var(--gray); margin-bottom: 30px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                    ${message || defaultMessage}
+                </p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="shop.html" class="btn btn-large">Continue Shopping</a>
+                    <a href="cart.html" class="btn btn-outline btn-large">View Cart</a>
+                </div>
+            </div>
+        `;
+
+            orderSummary.innerHTML = `
+            <div class="card" style="text-align: center; padding: 40px 20px;">
+                <p style="color: var(--gray);">Add items to your cart to see order summary.</p>
+            </div>
+        `;
+        }
+
+        /* =========================
+           SHIPPING OPTIONS
+        ========================= */
+        function setupShippingOptions() {
+            const shippingOptions = document.querySelectorAll('.shipping-option');
+
+            shippingOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Remove selected class from all options
+                    shippingOptions.forEach(opt => opt.classList.remove('selected'));
+
+                    // Add selected class to clicked option
+                    option.classList.add('selected');
+
+                    // Update shipping fee based on selection
+                    const priceText = option.querySelector('.shipping-price').textContent;
+                    orderData.shippingFee = parseFloat(priceText.replace('$', ''));
+                    orderData.total = calculateTotal();
+
+                    // Update UI
+                    updateTotalsUI();
+                });
+            });
+        }
+
+        /* =========================
+           PAYMENT METHODS
+        ========================= */
+        function setupPaymentMethods() {
+            const paymentMethods = document.querySelectorAll('.payment-method');
+
+            paymentMethods.forEach(method => {
+                method.addEventListener('click', () => {
+                    // Remove selected class from all methods
+                    paymentMethods.forEach(m => m.classList.remove('selected'));
+
+                    // Add selected class to clicked method
+                    method.classList.add('selected');
+                });
+            });
+        }
+
+        /* =========================
+           APPLY PROMO CODE
+        ========================= */
+        function setupPromoCode() {
+            applyPromoBtn.addEventListener('click', () => {
+                const promoCode = document.getElementById('promoCode').value.trim().toUpperCase();
+
+                if (!promoCode) {
+                    alert('Please enter a promo code');
+                    return;
+                }
+
+                // Define valid promo codes and their discounts
+                const promoDiscounts = {
+                    'SAVE10': 0.10,  // 10% off
+                    'MEDICARE20': 0.20,  // 20% off
+                    'HEALTH15': 0.15  // 15% off
+                };
+
+                if (promoDiscounts[promoCode]) {
+                    const discount = orderData.subtotal * promoDiscounts[promoCode];
+                    orderData.discount = discount;
+                    orderData.total = calculateTotal();
+
+                    // Update UI
+                    updateTotalsUI();
+
+                    // Show discount row if not exists
+                    let discountRow = document.getElementById('discountRow');
+                    if (!discountRow) {
+                        const orderTotals = document.querySelector('.order-totals');
+                        discountRow = document.createElement('div');
+                        discountRow.id = 'discountRow';
+                        discountRow.className = 'total-row';
+                        discountRow.innerHTML = `
+                        <span>Discount (${promoCode})</span>
+                        <span style="color: var(--success);">-$${discount.toFixed(2)}</span>
+                    `;
+                        orderTotals.insertBefore(discountRow, orderTotals.querySelector('.total-row.final'));
+                    } else {
+                        discountRow.innerHTML = `
+                        <span>Discount (${promoCode})</span>
+                        <span style="color: var(--success);">-$${discount.toFixed(2)}</span>
+                    `;
+                    }
+
+                    alert(`Promo code ${promoCode} applied! ${promoDiscounts[promoCode] * 100}% discount.`);
+                } else {
+                    alert('Invalid promo code. Please try again.');
+                }
+            });
+        }
+
+        /* =========================
+           PLACE ORDER
+        ========================= */
+        function setupPlaceOrder() {
+            placeOrderBtn.addEventListener('click', async () => {
+                try {
+                    // Validate required fields
+                    const email = document.getElementById('email').value.trim();
+                    const firstName = document.getElementById('firstName').value.trim();
+                    const lastName = document.getElementById('lastName').value.trim();
+                    const address = document.getElementById('address').value.trim();
+                    const city = document.getElementById('city').value.trim();
+                    const state = document.getElementById('state').value;
+                    const zip = document.getElementById('zip').value.trim();
+                    const phone = document.getElementById('phone').value.trim();
+
+                    if (!email || !firstName || !lastName || !address || !city || !state || !zip || !phone) {
+                        alert('Please fill in all required fields marked with *');
+                        return;
+                    }
+
+                    // Validate email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Please enter a valid email address');
+                        return;
+                    }
+
+                    // Get selected payment method
+                    const selectedPayment = document.querySelector('.payment-method.selected');
+                    if (!selectedPayment) {
+                        alert('Please select a payment method');
+                        return;
+                    }
+
+                    const paymentMethod = selectedPayment.querySelector('.payment-name').textContent.toLowerCase();
+                    let paymentType = 'cod';
+                    if (paymentMethod.includes('card')) paymentType = 'card';
+                    else if (paymentMethod.includes('paypal')) paymentType = 'paypal';
+
+                    // Prepare shipping address
+                    const shippingAddress = {
+                        fullName: `${firstName} ${lastName}`,
+                        email: email,
+                        address: address,
+                        city: city,
+                        state: state,
+                        postalCode: zip,
+                        country: 'USA',
+                        phone: phone
+                    };
+
+                    // Add apartment if provided
+                    const address2 = document.getElementById('address2').value.trim();
+                    if (address2) {
+                        shippingAddress.address = `${address}, ${address2}`;
+                    }
+
+                    // Prepare order data
+                    const orderPayload = {
+                        shippingAddress: shippingAddress,
+                        paymentMethod: paymentType,
+                        notes: `Shipping method: ${document.querySelector('.shipping-option.selected .shipping-name').textContent}`
+                    };
+
+                    console.log('Placing order with data:', orderPayload);
+
+                    // Disable button and show loading
+                    placeOrderBtn.disabled = true;
+                    placeOrderBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+
+                    // Send order to server
+                    const res = await fetch(`${API}/orders`, {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(orderPayload)
+                    });
+
+                    const data = await res.json();
+
+                    if (data.success) {
+                        // Show success modal
+                        showSuccessModal(data.order);
+
+                        // Update cart count to 0
+                        if (cartCount) {
+                            cartCount.textContent = '0';
+                        }
+                    } else {
+                        alert(`Order failed: ${data.message}`);
+                        placeOrderBtn.disabled = false;
+                        placeOrderBtn.innerHTML = '<i class="fas fa-lock"></i> Place Order Securely';
+                    }
+
+                } catch (error) {
+                    console.error('Order error:', error);
+                    alert('An error occurred while placing your order. Please try again.');
+                    placeOrderBtn.disabled = false;
+                    placeOrderBtn.innerHTML = '<i class="fas fa-lock"></i> Place Order Securely';
+                }
+            });
+        }
+
+        /* =========================
+           SHOW SUCCESS MODAL
+        ========================= */
+        function showSuccessModal(order) {
+            const modal = document.getElementById('successModal');
+            const modalContent = modal.querySelector('.modal-content');
+
+            // Update modal content with order details
+            modalContent.querySelector('strong').textContent = `#${order.orderNumber}`;
+
+            // Show modal
+            modal.style.display = 'flex';
+
+            // Redirect after 10 seconds
+            setTimeout(() => {
+                window.location.href = 'orders.html';
+            }, 10000);
+        }
+
+        /* =========================
+           CLOSE MODAL
+        ========================= */
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.style.display = 'none';
+            window.location.href = 'orders.html';
+        }
+
+        /* =========================
+           UPDATE CART COUNT
+        ========================= */
+        async function updateCartCount() {
+            try {
+                const res = await fetch(`${API}/cart/count`, {
+                    credentials: 'include'
+                });
+
+                if (res.ok) {
+                    const data = await res.json();
+                    if (cartCount && data.success) {
+                        cartCount.textContent = data.count;
+                    }
+                }
+            } catch (error) {
+                console.error('Update cart count error:', error);
+            }
+        }
+
+        /* =========================
+           INITIALIZE CHECKOUT
+        ========================= */
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Checkout page initialized');
+
+            // Load cart data
+            loadCartData();
+
+            // Setup event listeners
+            setupShippingOptions();
+            setupPaymentMethods();
+            setupPromoCode();
+            setupPlaceOrder();
+
+            // Update cart count
+            updateCartCount();
+
+            // Add close modal handler
+            const modal = document.getElementById('successModal');
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Add event listener for modal close button
+            document.querySelectorAll('.modal-buttons .btn').forEach(btn => {
+                btn.addEventListener('click', closeModal);
+            });
+        });
+
+        /* =========================
+           FORM VALIDATION HELPERS
+        ========================= */
+        function validateForm() {
+            const requiredFields = [
+                'email', 'firstName', 'lastName', 'address', 'city', 'state', 'zip', 'phone'
+            ];
+
+            for (const fieldId of requiredFields) {
+                const field = document.getElementById(fieldId);
+                if (!field.value.trim()) {
+                    field.focus();
+                    field.style.borderColor = 'var(--danger)';
+                    return false;
+                }
+                field.style.borderColor = '#ddd';
+            }
+
+            return true;
+        }
+
+        // Export functions for debugging
+        window.loadCartData = loadCartData;
+        window.closeModal = closeModal;
+    </script>
+
+</body>
+
+</html>

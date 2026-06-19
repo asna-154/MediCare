@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - MediCare Online Pharmacy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #2a7de1;
+            --primary-dark: #1a5bb5;
+            --secondary: #4CAF50;
+            --accent: #FF5722;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --danger: #dc3545;
+            --success: #28a745;
+            --warning: #ffc107;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background-color: #3d8b40;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 30px;
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+            margin-right: 10px;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo-text span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            background: linear-gradient(135deg, rgba(42, 125, 225, 0.9) 0%, rgba(26, 91, 181, 0.9) 100%), url('https://images.unsplash.com/photo-1551601651-2a8555f1a136?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .page-hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* About Content */
+        .about-content {
+            padding: 80px 0;
+        }
+
+        .mission-vision {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .mission-card, .vision-card {
+            text-align: center;
+            padding: 40px 30px;
+        }
+
+        .mission-icon, .vision-icon {
+            width: 100px;
+            height: 100px;
+            background-color: rgba(42, 125, 225, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--primary);
+            font-size: 40px;
+        }
+
+        .mission-card h3, .vision-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        /* Values Section */
+        .values {
+            background-color: var(--light);
+            padding: 80px 0;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+        }
+
+        .value-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* Team Section */
+        .team {
+            padding: 80px 0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .team-card {
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .team-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-card h4 {
+            font-size: 22px;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .team-card p {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .team-card .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .team-card .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .team-card .social-links a:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #2a7de1 0%, #1a5bb5 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 14px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .nav-links,
+            .auth-buttons {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 60px 0;
+            }
+
+            .page-hero h1 {
+                font-size: 36px;
+            }
+
+            .page-hero p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .stat-item h3 {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container-head container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-pills logo-icon"></i>
+                <div class="logo-text">Medi<span>Care</span></div>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="shop.html"><i class="fas fa-shopping-bag"></i> Shop</a></li>
+                <li><a href="prescription.html"><i class="fas fa-prescription-bottle"></i> Prescriptions</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone"></i> Contact</a></li>
+            </ul>
+
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="register.html" class="btn">Register</a>
+            </div>
+
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>About MediCare</h1>
+            <p>Your trusted partner in healthcare for over a decade. We're committed to making quality healthcare accessible and affordable for everyone.</p>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="mission-vision">
+                <div class="mission-card card">
+                    <div class="mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To provide easy access to authentic medicines and healthcare products, ensuring every customer receives quality care, expert advice, and timely delivery at their doorstep.</p>
+                </div>
+
+                <div class="vision-card card">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To become the most trusted and comprehensive digital healthcare platform, transforming how people access and experience healthcare services across the nation.</p>
+                </div>
+            </div>
+
+            <div class="story">
+                <h2 class="section-title">Our Story</h2>
+                <div class="card" style="text-align: center; padding: 40px;">
+                    <p style="font-size: 18px; line-height: 1.8;">
+                        Founded in 2010, MediCare started as a small local pharmacy with a simple goal: to make quality healthcare accessible to everyone. 
+                        Today, we've grown into a trusted online pharmacy serving thousands of customers nationwide. 
+                        Our journey has been guided by a commitment to authenticity, transparency, and customer care.
+                        <br><br>
+                        We understand that healthcare is personal, which is why we treat every customer like family. 
+                        Our team of licensed pharmacists and healthcare professionals work tirelessly to ensure you receive 
+                        the right medicines and advice when you need it most.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Trust & Authenticity</h4>
+                    <p>Every medicine we deliver is 100% authentic, sourced directly from verified manufacturers.</p>
+                </div>
+
+                <div class="value-card card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h4>Customer Care</h4>
+                    <p>Your health is our priority. We provide personalized care and expert advice.</p>
+                </div>
+
+                <div class="value-card card">
+                    <div class="value-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h4>Reliability</h4>
+                    <p>Timely delivery and consistent service you can depend on, every single time.</p>
+                </div>
+
+                <div class="value-card card">
+                    <div class="value-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h4>Privacy & Security</h4>
+                    <p>Your health information is protected with industry-leading security measures.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+        <div class="container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-card card">
+                    <div class="team-img">
+                        <i class="fas fa-user-md" style="font-size: 80px; color: var(--primary); line-height: 200px;"></i>
+                    </div>
+                    <h4>Dr. Sarah Johnson</h4>
+                    <p>Chief Pharmacist</p>
+                    <p>15+ years of pharmaceutical experience</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card card">
+                    <div class="team-img">
+                        <i class="fas fa-user-md" style="font-size: 80px; color: var(--primary); line-height: 200px;"></i>
+                    </div>
+                    <h4>Dr. Ahmed Khan</h4>
+                    <p>Medical Director</p>
+                    <p>Specialist in Clinical Pharmacology</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card card">
+                    <div class="team-img">
+                        <i class="fas fa-user-nurse" style="font-size: 80px; color: var(--primary); line-height: 200px;"></i>
+                    </div>
+                    <h4>Lisa Rodriguez</h4>
+                    <p>Customer Care Head</p>
+                    <p>10+ years in healthcare service</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <div class="team-card card">
+                    <div class="team-img">
+                        <i class="fas fa-user-tie" style="font-size: 80px; color: var(--primary); line-height: 200px;"></i>
+                    </div>
+                    <h4>Michael Chen</h4>
+                    <p>Operations Director</p>
+                    <p>Logistics and supply chain expert</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>50,000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <h3>5000+</h3>
+                    <p>Medicines Available</p>
+                </div>
+                <div class="stat-item">
+                    <h3>24/7</h3>
+                    <p>Pharmacist Support</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100+</h3>
+                    <p>Cities Served</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Join Our Healthcare Community</h2>
+            <p>Experience the MediCare difference. Get authentic medicines delivered to your doorstep with expert guidance every step of the way.</p>
+            <a href="register.html" class="btn" style="padding: 15px 40px; font-size: 18px;">Create Your Account</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>MediCare</h3>
+                    <p>Your trusted online pharmacy for authentic medicines and healthcare products with fast delivery and expert support.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="#">Prescriptions</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Cardiology</a></li>
+                        <li><a href="#">Diabetes Care</a></li>
+                        <li><a href="#">Skin Care</a></li>
+                        <li><a href="#">Baby Care</a></li>
+                        <li><a href="#">First Aid</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> support@medicare.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sun: 8:00 AM - 10:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 MediCare Online Pharmacy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function () {
+            const navLinks = document.querySelector('.nav-links');
+            const authButtons = document.querySelector('.auth-buttons');
+
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.display = 'none';
+                authButtons.style.display = 'none';
+            } else {
+                navLinks.style.display = 'flex';
+                authButtons.style.display = 'flex';
+
+                if (window.innerWidth <= 768) {
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '70px';
+                    navLinks.style.left = '0';
+                    navLinks.style.right = '0';
+                    navLinks.style.backgroundColor = 'white';
+                    navLinks.style.padding = '20px';
+                    navLinks.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+
+                    authButtons.style.flexDirection = 'column';
+                    authButtons.style.position = 'absolute';
+                    authButtons.style.top = '270px';
+                    authButtons.style.left = '0';
+                    authButtons.style.right = '0';
+                    authButtons.style.padding = '0 20px 20px';
+                    authButtons.style.backgroundColor = 'white';
+                }
+            }
+        });
+
+        // Update auth buttons based on login status
+        function updateAuthButtons() {
+            const authButtons = document.querySelector('.auth-buttons');
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const currentUser = localStorage.getItem('currentUser');
+
+            if (isLoggedIn === 'true' && currentUser) {
+                const user = JSON.parse(currentUser);
+                authButtons.innerHTML = `
+                    <span style="margin-right: 15px; font-weight: 600;">Welcome, ${user.name || user.email.split('@')[0]}</span>
+                    <a href="#" class="btn btn-outline" id="logoutBtn">Logout</a>
+                `;
+
+                document.getElementById('logoutBtn').addEventListener('click', function (e) {
+                    e.preventDefault();
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('currentUser');
+                    updateAuthButtons();
+                });
+            } else {
+                authButtons.innerHTML = `
+                    <a href="login.html" class="btn btn-outline">Login</a>
+                    <a href="register.html" class="btn">Register</a>
+                `;
+            }
+        }
+
+        // Initialize auth buttons
+        updateAuthButtons();
+    </script>
+</body>
+
+</html>
