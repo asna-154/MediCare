@@ -94,6 +94,9 @@ medicare/
 │   ├── server.js
 │   ├── mongo.js
 │   ├── package.json
+|   ├── package-lock.json
+|   ├── seedProduct.js
+|   ├── test-server.js
 │   ├── config/
 │   │   └── db.js
 │   ├── controllers/
@@ -113,14 +116,18 @@ medicare/
 │       └── userRoutes.js
 │
 └── Frontend/
-    ├── index.html        (Home Page)
-    ├── login.html        (Login/Register Page)
+    ├── index.html         (Home Page)
+    ├── login.html         (Login/Register Page)
     ├── shop.html          (Shop Page)
     ├── cart.html          (Cart Page)
     ├── checkout.html      (Checkout Page)
-    ├── css/
+    ├── about.html         (About Page)
+    ├── contact.html       (Contact Form Page)
+    ├── product.html       (Products Page)
+    ├── profile.html       (Profile Page)
+    ├── register.html      (Registration Page)
     └── js/
-        ├── checkout.js
+        ├── auth.js
         └── cart-count.js
 ```
 
@@ -135,7 +142,7 @@ medicare/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/asna-154/medicare.git
+git clone https://github.com/asna-154/MediCare.git
 cd medicare
 ```
 
@@ -161,15 +168,6 @@ node server.js
 The frontend is plain HTML/CSS/JS served alongside the backend. Open `index.html` in your browser, or serve it through the Express static middleware if configured in `server.js`.
 
 The app will be available at `http://127.0.0.1:3000`.
-
----
-
-## 🔐 Environment Variables
-
-| Variable | Description |
-|----------|--------------|
-| `PORT` | Backend server port (default: 3000) |
-| `MONGO_URI` | MongoDB connection string |
 
 ---
 
